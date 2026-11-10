@@ -45,7 +45,7 @@ Then ask something like:
 | `scripts/build.mjs` | Builds figure files into one stroke file |
 | `scripts/preview.mjs` | Renders figures to a PNG and warns about strokes off the canvas |
 | `scripts/player.js` | The canvas player, framework-free, 5 KB |
-| `examples/` | The source of the drawings above |
+| `examples/` | The source of the drawings above, plus `kitchen.mjs`: a reference for drawing a person |
 
 To try it without an agent:
 ```bash

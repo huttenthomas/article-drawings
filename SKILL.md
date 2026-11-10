@@ -72,6 +72,21 @@ Things that keep it looking drawn:
 - **Keep detail coarse enough for a phone.** A 1200-wide drawing appears about 350 pixels wide there. Spacing below about 8 units clots.
 - **Use a little hatching on one side of main objects.** It's what separates these from a wireframe. Too much makes them muddy, and most small objects need none.
 
+### Drawing people
+
+People are where these drawings most easily turn childish. A front-facing oval with dot eyes and a smile, a mitten hand and a slab body reads as a doodle, however clean the lines are. What works instead (see `examples/kitchen.mjs`):
+
+- **Draw them in profile or three-quarter view, not head-on.** A profile is one spline you can get right: forehead, brow ridge, a dip at the eye socket, a nose with a defined tip and underside, small lips set back behind the nose, chin, then the jaw running back to the ear. Keep lips and chin behind the nose tip; when they stick out as far as the nose, the face turns into a blob.
+- **Give the skull a back.** The back of the head bulges out past the ear, then cuts in at the nape before the neck. A straight line from hat or hair to shoulders makes a column, not a head. Add an ear (a C shape with one inner curve) and a light neck muscle from behind the ear to the collar.
+- **Eyes are lids, not dots.** An upper lid curve, a fainter lower lid and a tiny pupil placed where they look. A brow line above. No smile; a short mouth line is enough.
+- **Pose the head with `tilted()`** so it bends towards what the person looks at. That carries "reading" or "looking" better than a dashed sight line, which looks like a diagram.
+- **Proportions:** the torso is wider than the head (about 1.3× the head's length from nose to back of skull), and the neck is shorter and narrower than you'd guess.
+- **Limbs taper.** Build a forearm from a centreline with a half-width that shrinks from elbow to wrist and bulges a little near the elbow, and draw both edges from it. Parallel edges make sausages. Break the edges for a rolled sleeve or cuff.
+- **Hands hold things.** A closed fist round a handle: back of the hand, a knuckle line, two finger creases and a thumb crossing over the handle. Draw the handle only where it shows outside the fist.
+- **Hide what you can't draw well.** Stand the person behind a counter, desk or table so the body is cut off at the waist. It also solves the transparency problem, because their lines simply end at the surface.
+- **Hatch the far side** of the face (cheek and under the jaw), the back of the hat or hair, and the shoulder away from the viewer. Keep cheek hatching light, or it reads as a beard.
+- **Clothes need two or three details,** not more: a collar, a few buttons, a seam or a fold. Keep buttons clear of any arm crossing the body.
+
 ### 4. Check it by eye, and fix it
 
 Render with the preview script. It also warns about strokes that leave the canvas.
@@ -80,12 +95,13 @@ Render with the preview script. It also warns about strokes that leave the canva
 node ~/.claude/skills/article-drawings/scripts/preview.mjs <strokes.js> <out.png> [NAME_FILTER] [--dark]
 ```
 
-Read the PNG and look for these, which are the mistakes that actually come up:
+Read the PNG and look for these, which are the mistakes that actually come up. For anything detailed, such as a face or a hand, also crop and enlarge the PNG (on macOS: `sips -c <h> <w> --cropOffset <y> <x> in.png --out crop.png && sips -Z 900 crop.png`), because the full preview is too small to judge it:
 
 - Objects passing through the ground line or through each other.
 - Arrows or connectors running into a neighbouring object, or crossing text. Make text end where a connector leaves.
 - Parts that read as something else, such as a filament that looks like a second bulb.
 - Orange used for anything outside the article's rule.
+- People that look childish: a face seen head-on, dot eyes, straight-sided limbs, a head with no back. See "Drawing people".
 - Whether a stranger would get the idea from the drawing and caption alone.
 
 Expect one correction round. Then look at it once more in the real page.
